@@ -1,0 +1,26 @@
+@keyframes rain {
+  from {background-color: inherit}
+  to { background-color: red}
+}
+
+.nav-link:hover {
+  animation: rain 1s linear;
+  background-color: red;
+}
+
+.nav-link {
+  border-radius: 10px;
+  color: white !important;
+}
+
+.navbar-brand {
+  color: white !important;
+}
+
+html {
+  background: url("../src/lungbg.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
