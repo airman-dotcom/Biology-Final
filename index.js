@@ -12,6 +12,6 @@ app.get("/functions", (req, res) => {
   res.sendFile(__dirname + "/public/functions.html");
 })
 
-app.listen(3000, "localhost", () => {
+app.listen(3000, () => {
   console.log("Welcome to the Respiratory System.")
 })
