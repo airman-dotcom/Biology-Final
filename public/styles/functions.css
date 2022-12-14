@@ -1,11 +1,30 @@
 @keyframes rainn {
-    from {background-color: red}
-    to {background-color: pink;}
+    0% {color: yellow}
+    50% {color: blue;}
+    100% {color: yellow}
 }
 
 * {
-  background-color: black;
-  /*animation: rainn linear infinite;*/
+  background-color: rgb(33, 37, 41);
+  /*animation: rainn 4s linear infinite;*/
+}
+
+.first {
+  display: flex;
+  color: white;
+  justify-content: space-around;
+}
+.first1 {
+  align-self: center;
+  color: white;
+}
+
+.first:last-child {
+  margin-bottom: 5vh;
+}
+
+code {
+  color: yellow;
 }
 
 @keyframes rain {
@@ -17,7 +36,10 @@
     from {background-color: inherit}
     to {background-color: blue}
   }
-  
+
+#games {
+  animation: rainn 4s linear infinite;
+}
   .nav-link:hover {
     animation: rain 0.6s linear;
     background-color: red;
@@ -105,3 +127,8 @@
     flex-wrap: wrap;
     text-align: center;
   }
+
+#t img.first1 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
