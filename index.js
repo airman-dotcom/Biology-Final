@@ -28,6 +28,10 @@ app.get("/bibliography", (req, res) => {
   res.sendFile(__dirname + "/public/bibliography.html");
 })
 
+app.get("/games", (req, res) => {
+  res.sendFile(__dirname + "/public/games.html")
+})
+
 app.listen(3000, () => {
   console.log("Welcome to the Respiratory System.")
 })

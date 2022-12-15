@@ -1,0 +1,86 @@
+@keyframes rain {
+  from {background-color: inherit}
+  to { background-color: red}
+}
+
+@keyframes rainbo {
+  0% {color: yellow; border: 2px solid yellow}
+  50% {color: blue; border: 2px solid blue}
+  100% {color: yellow; border: 2px solid yellow}
+}
+
+@keyframes rainn {
+    0% {color: yellow}
+    50% {color: blue;}
+    100% {color: yellow}
+}
+
+
+
+* {
+  background-color: rgb(33, 37, 41);
+  /*animation: rainn 4s linear infinite;*/
+}
+
+.big {
+  border: 2px solid white;
+  width: 100vw;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+}
+
+h1.first {
+  animation: rainbo 4s linear infinite;
+  display: flex;
+  height: fit-content;
+}
+
+@keyframes rr {
+  from {background-color: inherit}
+  to {background-color: blue}
+}
+
+.nav-link:hover {
+  animation: rain 0.6s linear;
+  background-color: red;
+}
+
+
+#games {
+  animation: rainn 4s linear infinite;
+  padding: 0.5rem;
+}
+
+
+.nav-link {
+  border-radius: 10px;
+  color: white !important;
+}
+
+.navbar-brand:hover {
+  animation: rr 0.6s linear;
+  background-color: blue;
+}
+
+.navbar-brand {
+  border-radius: 10px;
+  color: white !important;  
+}
+.navbar {
+  background-color: rgb(33, 37, 41, 1);
+  background: linear-gradient(180deg, rgba(33,37,41,1) 72%, black 100%);
+}
+
+#navbarNav {
+  justify-content: center;
+}
+
+.active {
+  color: orange !important;
+}
+
+.active:hover {
+  color: black !important;
+}
+
