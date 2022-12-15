@@ -42,10 +42,6 @@ code {
   padding: 0.5rem;
 }
 
-#link {
-  animation: rainn 4s linear infinite;
-}
-
 .nav-item #games {
   vertical-align: middle;
 }
@@ -127,6 +123,11 @@ code {
     margin-top: 2vh;
   }
   */
+
+  #modal1 *:not(button){
+    background-color: white;
+  }
+
   .else {
     width: 100vw;
     margin-top: 56px;

@@ -9,8 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&display=swap" rel="stylesheet">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <link type="text/css" rel="stylesheet" href="styles/functions.css"/>
-  
+  <link type="text/css" rel="stylesheet" href="styles/disease-disorders.css"/>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+
+  <script src="winwheel.js"></script>
     <title>Anatomy</title>
 </head>
 <body>
@@ -46,10 +48,94 @@
 </nav>
 <!--<img src="bg.png" class="bg">-->
 <div class="big">
-  
+  <h1 class="first">Spin the wheel of Disease/Disorder!</h1>
+  <div class="first"><canvas class="first1" width="400px" height="400px" id="wheel">Canvas not supported, use another browser.</canvas></div>
+  <div class="first"><h4 class="first1"><span style="font-size: 60px;">&#9760;</span>Round, round the death wheel goes, what disease will you get? Nobody knows!<span style="font-size: 60px;">&#9760;</span></h4></div>
+</div>
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" id="modal1">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="title"></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 </body>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script>
+  let wheel = new Winwheel({
+    'canvasId'    : 'wheel',
+    'pointerAngle': 0,
+    'numSegments' : 5,
+    'segments': [
+            {'fillStyle' : '#eae56f', 'textFontSize': 18, 'text' : 'Pulmonary Fibrosis'},
+            {'fillStyle' : '#89f26e', 'text' : 'Tuberculosis'},
+            {'fillStyle' : '#7de6ef', 'text' : 'Asthma'},
+            {'fillStyle' : '#e7706f', 'text' : 'COPD'},
+            {'fillStyle': '#FFA500', 'text': 'Pneumonia'}
+  ],
+  'pointerGuide' :        // Turn pointer guide on.
+        {
+            'display'     : true,
+            'strokeStyle' : 'red',
+            'lineWidth'   : 3
+        },
+  'animation' : // Note animation properties passed in constructor parameters.
+  {
+    'callbackFinished': 'finished()',
+    'callbackAfter': 'drawTriangle()',
+  'type' : 'spinToStop',// Type of animation.
+  'duration' : 5, // How long the animation is to take in seconds.
+  'spins' : 8 // The number of complete 360 degree rotations the wheel is to do.
+  }
+  })
+  const mod = new bootstrap.Modal('#modal')
+  let data = {
+    'Pulmonary Fibrosis': 'Pulmonary Fibrosis is the thickening and scarring of Alveoli tissue.<br><br>Some symptoms include: <ul><li>Shortness of Breath</li><li>Dry Coughing</li><li>Fatigue</li><li>Enlargement of fingers and toes</li><li>etc.</li></ul>It is mostly caused by radiation, coal dusts, grain dusts, bird droppings, and pulmonary drugs.<br><br>There is no cure for Pulmonary Fibrosis, but there are treatemts to help symptoms.',
+    'Pneumonia': 'Pneumonia is the filling of groups of alveoli with pus, and fluid filled with blood and bacteria.<br><br>Some symptomps include: <ul><li>Chest pain</li><li>Nausea, Vommiting, Diarrhea</li><li>Low Body temperature (in seniors)</li><li>Coughing</li><li>Confusion (in seniors)</li><li>Fever, Fatigue, Sweat, Chills</li><ul>It is mainly caused by bacteria, viruses, or fungi. Bacteria (streptococcus pneumonaie) and viruses (like COVID-19) can be transmitted through the air or by surfaces, fungi is mostly found in soil or bird droppings.<br><br>There is treatement, Antibiotics or Penicillin for the disease, and cough syrup for the symptoms.',
+    'COPD': "Chronic Obstructive Pulmonary Disease (or COPD) is an inflammatory lung disease in which the alveoli sacks expand and remain expanded (they're supposed to contract), thus allowing some CO2 to remain in the formed pockets.<br><br>Symptoms include: <ul><li>Coughing, wheezing, shortness of breath</li><li>Swelling in the ankles, legs or feet</li><li>lack of energy</li><li>Unintended Weight loss</li><li>Other respiratory infecitons</li></ul>It is mainly caused by smoking or breathing in gas fumes.<br><br>The cure for those with COPD is to stop enhaling smoke being that most patients with COPD have mild forms of the disease. There are also medications to take through inhalers to treat symptoms and complications.",
+    "Asthma": 'Asthma is a lung disease that is very common in the US, with 25 million people having it.<br><br>Symptoms include: <ul><li>Repeated wheezing, and coughing</li><li>Tightness in the chest</li><li>Breathlessness</li></ul>The causes for asthma are interesting. Asthma is partly genetic partly not. A patient can get asthma if a parent or relative has had asthma. It can also be caused by a chronic respiratory illness as an infant, substances in their environment, smokoing, air pollution, or obesity.<br><br>There is no cure for asthma, but there are medications to releive symptoms. These medications can be taken using an inhaler, which puffs the medicine into ones mouth for a more effective route to the lungs, or using tablets which go through the circulatory system to the lungs.',
+    'Tuberculosis': "Tuberculosis (also known as TB) is a bacteria that affects the lungs and is transported mainly through the air. There are 2 types of TB, Latent TB and Active TB. Latent TB means that the bacteria is still in the body but it is inactive, causes no symptoms, but it can become Active TB. Active TB is when the bacteria is active, and it makes you sick with symptoms.<br><br>Symptoms include: <ul><li>Coughing, Coughing up blood</li><li>Chest pain</li><li>Unintentional weight loss</li><li>Fatigue, Fever, Night Sweat, Chills</li><li>Loss of appetit</li></ul>Interestingly the rise of TB in the 1980's was due to the rise of HIV, which weakens the immune system, allowing for TB to kill more people and transmit easier.<br><br>Fortunately, there are medications and antibiotics to take if you have TB. If you have Active TB, you must take multiple at a time."
+  }
+  function finished(){
+    let t = document.getElementById("title");
+    let bod = document.getElementById("body");
+    let selected = wheel.getIndicatedSegment();
+    selected = selected.text;
+    document.getElementById("title").innerText = selected;
+    body.innerHTML = data[selected]
+    mod.show();
+  }
 
+  drawTriangle();
+ 
+    function drawTriangle()
+    {
+        // Get the canvas context the wheel uses.
+        let ctx = wheel.ctx;
+ 
+        ctx.strokeStyle = 'navy';     // Set line colour.
+        ctx.fillStyle   = 'aqua';     // Set fill colour.
+        ctx.lineWidth   = 2;
+        ctx.beginPath();              // Begin path.
+        ctx.moveTo(170, 5);           // Move to initial position.
+        ctx.lineTo(230, 5);           // Draw lines to make the shape.
+        ctx.lineTo(200, 40);
+        ctx.lineTo(171, 5);
+        ctx.stroke();                 // Complete the path by stroking (draw lines).
+        ctx.fill();                   // Then fill.
+    }
+  document.getElementById("wheel").onclick = function(){
+    wheel.startAnimation();
+  }
+</script>
 
 </html>
